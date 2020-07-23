@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const {ObjectId} = mongoose.Schema
+const { ObjectId } = mongoose.Schema
 
 
 const productRules = {
@@ -27,6 +27,11 @@ const productRules = {
     quantity: {
         required: true,
         type: Number
+
+    },
+    soldQuantity: {
+        type: Number,
+        default: 0
     },
     photo: {
         data: Buffer,
@@ -36,12 +41,12 @@ const productRules = {
         required: true,
         type: Boolean
     }
-   
+
 }
 
-const productSchema = new mongoose.Schema(productRules,{
+const productSchema = new mongoose.Schema(productRules, {
     timestamps: true
 })
 
 
-module.exports = mongoose.model("Product",productSchema)
+module.exports = mongoose.model("Product", productSchema)

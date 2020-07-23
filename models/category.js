@@ -11,9 +11,9 @@ const categoryRules = {
     }
 }
 
-const categorySchema = new mongoose.Schema(categoryRules,{
+const categorySchema = new mongoose.Schema(categoryRules, {
     timestamps: true
 })
 
 
-module.exports = mongoose.model("Category",categorySchema)
+module.exports = mongoose.model("Category", categorySchema)

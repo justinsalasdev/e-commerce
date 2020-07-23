@@ -9,6 +9,7 @@ require('dotenv').config()
 
 
 //middlewares
+
 // app.use(morgan('dev'))
 app.use(bodyParser.json())
 app.use(cookieParser())
