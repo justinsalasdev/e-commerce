@@ -44,19 +44,29 @@ exports.create = (req, res) => {
         });
       }
 
+      fs.readFile(files.photo.path, (err,data) => {
+          console.log(data)
+          if(err){
+            return res.status(400).json({
+                errorMessage: "Failed to save image",
+            }); 
+          }
+          product.photo.data = data
+          product.photo.contentType = files.photo.type;
+
+          product.save((err, result) => {
+            if (err) {
+              return res.status(400).json({
+                errorMessage: errorHandler(err) || "Failed to save product",
+              });
+            }
+            res.json(result);
+          });
+      });
       
-      product.photo.data = fs.readFileSync(files.photo.path);
-      product.photo.contentType = files.photo.type;
     }
 
-    product.save((err, result) => {
-      if (err) {
-        return res.status(400).json({
-          errorMessage: errorHandler(err) || "Failed to save product",
-        });
-      }
-      res.json(result);
-    });
+    
   });
 };
 
